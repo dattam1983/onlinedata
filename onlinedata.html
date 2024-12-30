@@ -45,44 +45,4 @@
 
   </form>
 </body>
- <script>
-  async function submitForm(event) {
-  event.preventDefault();
-
-  const submitButton = document.querySelector('button[type="submit"]');
-  const loadingIndicator = document.querySelector('.loading');
-  const messageElement = document.getElementById('message');
-  submitButton.disabled = true;
-  loadingIndicator.style.display = 'inline';
-
-  const formData = new FormData(document.getElementById('userForm'));
-  const data = Object.fromEntries(formData.entries());
-
-  try {
-    console.log('Sending data:', data);
-    const response = await fetch('https://script.google.com/macros/s/AKfycbxcZ_8z7tqyvY0R11B6ydyk8l4ZJUe-ZOm0plEPnkJk_diGQV7V89UnhoUCJ2B6e0MQ/exec', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    console.log('Response status:', response.status);
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const result = await response.json();
-    console.log('Server response:', result);
-    messageElement.textContent = result.message || 'Data submitted successfully!';
-  } catch (error) {
-    console.error('Fetch error:', error);
-    messageElement.textContent = 'Error submitting data: ' + error.message;
-  } finally {
-    submitButton.disabled = false;
-    loadingIndicator.style.display = 'none';
-  }
-}
- </script>
-  
   </html>
