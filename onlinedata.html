@@ -43,8 +43,10 @@
     </label><br><br>
     <button type="submit">Submit</button>
 
-
-async function submitForm(event) {
+  </form>
+</body>
+ <script>
+  async function submitForm(event) {
   event.preventDefault();
 
   const submitButton = document.querySelector('button[type="submit"]');
@@ -81,7 +83,6 @@ async function submitForm(event) {
     loadingIndicator.style.display = 'none';
   }
 }
-  </form>
-</body>
+ </script>
   
   </html>
